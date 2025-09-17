@@ -17,6 +17,9 @@ public class User {
     @Column(name = "email")
     private String email;
 
+    @Column(name = "password", nullable = false)
+    private String password;
+
     @OneToOne
     @JoinColumn(name = "photo_id")
     private Photo photo;
@@ -29,6 +32,14 @@ public class User {
 
     public Long getUserId() {
         return userId;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public void setUserId(Long userId) {

@@ -4,4 +4,5 @@ import br.ufpb.dcx.dsc.repositorios.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {
+    org.springframework.security.core.userdetails.User findByNome(String username);
 }
