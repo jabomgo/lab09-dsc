@@ -18,16 +18,15 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User u = userRepository.findByNome(username);
-        if(u == null) {
-            throw new UsernameNotFoundException("User não encontrado");
-        }
+        br.ufpb.dcx.dsc.repositorios.models.User u = userRepository.findByNome(username)
+                .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado"));
 
         var authorities = Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"));
 
         return new org.springframework.security.core.userdetails.User(
-                u.getUsername(),
+                u.getNome(),
                 u.getPassword(),
-                authorities);
+                authorities
+        );
     }
 }
